@@ -1,0 +1,9 @@
+distribution_type: module
+generated_by: Module::Install version 0.63
+license: perl
+name: Text-Password-Pronouncable.pm
+no_index: 
+  directory: 
+    - inc
+    - t
+version: 0.25
