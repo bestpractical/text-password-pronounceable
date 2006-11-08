@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Carp;
 
-our $VERSION = '0.26';
+our $VERSION = '0.27';
 
 # frequency of English digraphs (from D Edwards 1/27/66) 
 my  $frequency = [
@@ -209,6 +209,20 @@ Text::Password::Pronounceable - Generate pronounceable passwords
 
 This module generates pronuceable passwords, based the the English
 digraphs by D Edwards.
+
+=head2 METHODS
+
+=over
+
+=item new($min, $max)
+
+Construct a password factory with length limits of $min and $max.
+
+=item generate
+
+Generate password.
+
+=back
 
 =head1 HISTORY
 

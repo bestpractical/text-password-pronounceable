@@ -1,3 +1,8 @@
+[Changes for 0.27 - 8 Nov, 2006]
+
+* Fix distname typo in package.
+* Add pod tests.
+
 [Changes for 0.25 - 11 Sep, 2006]
 
 Initial CPAN release, extracted from RT.
