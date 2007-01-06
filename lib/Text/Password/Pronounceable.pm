@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Carp;
 
-our $VERSION = '0.27';
+our $VERSION = '0.28';
 
 # frequency of English digraphs (from D Edwards 1/27/66) 
 my  $frequency = [
@@ -149,7 +149,7 @@ sub generate {
     my ($min, $max) = @_;
     if (ref $self) {
 	$min ||= $self->{min};
-	$max ||= $self->{max};
+	$max ||= $self->{max} || $self->{min};
     }
 
     Carp::carp "min and max length must be defined" if !$min || !$max;
@@ -217,6 +217,7 @@ digraphs by D Edwards.
 =item new($min, $max)
 
 Construct a password factory with length limits of $min and $max.
+If $max is omitted, it defaults to $min.
 
 =item generate
 

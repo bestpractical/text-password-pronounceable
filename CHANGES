@@ -1,3 +1,7 @@
+[Changes for 0.28 - 6 Jan, 2007]
+
+* Make ->new take just one $len as well. [Adriano Ferreira]
+
 [Changes for 0.27 - 8 Nov, 2006]
 
 * Fix distname typo in package.
