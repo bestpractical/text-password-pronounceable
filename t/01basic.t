@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 use strict;
-use Test::More tests => 6;
+use Test::More tests => 10;
 
 use Text::Password::Pronounceable;
 
@@ -30,4 +30,25 @@ ok(length($str) == 6);
 $str = $pp->generate(3,4);
 
 ok(length($str) <= 4 && length($str) >= 3);
+
+$str = $pp->generate(5);
+
+ok(length($str) == 5);
 }
+
+{
+# testing generate as a class method
+
+my $str = Text::Password::Pronounceable->generate(6, 10);
+
+ok(length($str) <= 10 && length($str) >= 6);
+
+$str = Text::Password::Pronounceable->generate(3, 4);
+
+ok(length($str) <= 4 && length($str) >= 3);
+
+$str = Text::Password::Pronounceable->generate(5);
+
+ok(length($str) == 5);
+}
+

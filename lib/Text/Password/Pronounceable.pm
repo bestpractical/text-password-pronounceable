@@ -148,9 +148,10 @@ sub generate {
     my $self = shift;
     my ($min, $max) = @_;
     if (ref $self) {
-	$min ||= $self->{min};
-	$max ||= $self->{max} || $self->{min};
+        $min ||= $self->{min};
+        $max ||= $self->{max};
     }
+    $max ||= $min;
 
     Carp::carp "min and max length must be defined" if !$min || !$max;
 
@@ -214,14 +215,26 @@ digraphs by D Edwards.
 
 =over
 
-=item new($min, $max)
+=item B<new>
+
+  $pp = Text::Password::Pronounceable->new($min, $max);
+  $pp = Text::Password::Pronounceable->new($len);
 
 Construct a password factory with length limits of $min and $max.
-If $max is omitted, it defaults to $min.
+Or create a password factory with fixed length if only one argument
+is provided.
 
-=item generate
+=item B<generate>
 
-Generate password.
+  $pp->generate;
+  $pp->generate($len);
+  $pp->generate($min, $max);
+
+  Text::Password::Pronounceable->generate($len);
+  Text::Password::Pronounceable->generate($min, $max);
+
+Generate password. If used as an instance method, arguments override
+the factory settings.
 
 =back
 
