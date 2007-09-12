@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Carp;
 
-our $VERSION = '0.28_01';
+our $VERSION = '0.29';
 
 # frequency of English digraphs (from D Edwards 1/27/66) 
 my  $frequency = [
