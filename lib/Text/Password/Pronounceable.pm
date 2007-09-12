@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Carp;
 
-our $VERSION = '0.28';
+our $VERSION = '0.28_01';
 
 # frequency of English digraphs (from D Edwards 1/27/66) 
 my  $frequency = [
@@ -137,9 +137,26 @@ my  $start_freq = [
 my  $total_sum = 0;
 $total_sum += $_ for @$start_freq;
 
+sub _check_lengths {
+    my ($min, $max) = @_;
+
+    Carp::carp "min length should be defined" unless defined $min;
+    Carp::carp "min length should be > 0" unless $min>0;
+
+    Carp::carp "max length should be defined" unless defined $max;
+    Carp::carp "max length should be > 0" unless $max>0;
+
+    Carp::carp "max length must be >= min length" unless $min<=$max;
+}
+
 sub new {
     my $class = shift;
     my ($min, $max) = @_;
+    $max ||= $min;
+
+    if (@_) {
+	_check_lengths($min, $max);
+    }
 
     return bless { min => $min, max => $max }, $class;
 }
@@ -147,13 +164,19 @@ sub new {
 sub generate {
     my $self = shift;
     my ($min, $max) = @_;
-    if (ref $self) {
-        $min ||= $self->{min};
-        $max ||= $self->{max};
-    }
-    $max ||= $min;
 
-    Carp::carp "min and max length must be defined" if !$min || !$max;
+    if (@_) {
+        $max ||= $min;
+        _check_lengths($min, $max);
+    } elsif (ref $self) { # if given no arguments,
+        # use the factory settings (if any)
+        $min = $self->{min};
+        $max = $self->{max};
+    }
+    if ( !$min && !$max ) {
+        # what? no parameters?
+        return q[]; # no random password
+    }
 
     # When munging characters, we need to know where to start counting letters from
     my $a = ord('a');
