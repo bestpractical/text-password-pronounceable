@@ -265,11 +265,29 @@ the factory settings.
 
 This code derived from mpw.pl, a bit of code with a sordid history.
 
+=over 4
+
+=item *
+
 CPAN module by Chia-liang Kao 9/11/2006.
+
+=item *
+
 Perl cleaned up a bit by Jesse Vincent 1/14/2001.
+
+=item *
+
 Converted to perl from C by Marc Horowitz, 1/20/2000.
+
+=item *
+
 Converted to C from Multics PL/I by Bill Sommerfeld, 4/21/86.
+
+=item *
+
 Original PL/I version provided by Jerry Saltzer.
+
+=back
 
 =head1 LICENSE
 
